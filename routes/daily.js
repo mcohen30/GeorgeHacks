@@ -45,7 +45,7 @@ router.post('/', function(req, res, next) {
         "steps": "3546"
         }        
         ;
-    //data = req.body;
+    data = req.body;
     
     test_db.insert(data, function(err, body){
       if(!err){
