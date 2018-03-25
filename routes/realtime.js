@@ -40,6 +40,8 @@ router.get('/', function(req, res, next) {
         } else {
           console.log('Email sent: ' + info.response);
         }
+
+        res.send('this is get realtime. sent tststststs');
       });
 /* 
     http.get('http://127.0.0.1:5984/test2/_all_docs?include_docs=true', (resp) => {
@@ -81,16 +83,41 @@ router.post('/', function(req, res, next) {
                 "z": "10"
             },
         "heart_rate": "78"
-        }
+        } 
         ;
-    data = req.body;
+    //data = req.body;
     
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'fallxalert@gmail.com',
+          pass: 'aliali12345'
+        }
+      });
+      
+      //var bod= req.body;
+      var bod= JSON.stringify(req.body);
+
+      var mailOptions = {
+        from: 'fallxalert@gmail.com',
+        to: 'bq13nju@outlook.com',
+        subject: 'Alert: Your Family Member has fallen',
+        text: bod
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 /*     test_db.insert(data, function(err, body){
       if(!err){
         //awesome
       }
     }); */
-    res.send('this is post realtime');
+    res.send('this is post realtime. sent' + bod);
 
  /*    // Create a database/collection inside CouchDB
     request.put(url + db, function(err, resp, body) {
