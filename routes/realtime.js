@@ -45,14 +45,17 @@ router.get('/', function(req, res, next) {
         } 
         ;
 
+        var textMessage = "Dear Family Member, \n" +
+                        'Qi has just fallen. His location is at Longitude -102.89 and Latitude 34.34 \n Click here for Google Maps Location.'+
+                        'His Heart Rate is 78 bpm \n' +
+                        'Click here to call him or here to call 911';
         
-        res.send('this is get realtime. sent tststststs' + 'long' + data.time);
 
-/*       var mailOptions = {
+       var mailOptions = {
         from: 'fallxalert@gmail.com',
         to: 'bq13nju@outlook.com',
         subject: 'Alert: Your Family Member has fallen',
-        text: bod
+        text: textMessage
       };
       
       transporter.sendMail(mailOptions, function(error, info){
@@ -62,8 +65,8 @@ router.get('/', function(req, res, next) {
           console.log('Email sent: ' + info.response);
         }
 
-        res.send('this is get realtime. sent tststststs');
-      }); */
+        res.send(textMessage);
+      }); 
 /* 
     http.get('http://127.0.0.1:5984/test2/_all_docs?include_docs=true', (resp) => {
           let data = '';
@@ -125,20 +128,26 @@ router.post('/', function(req, res, next) {
 
       //send email
 
-/*       var mailOptions = {
+      var textMessage = 'Dear Family Member, \n' +
+      'Qi has just fallen. His location is at Longitude -102.89 and Latitude 34.34 \n Click here for Google Maps Location.'+
+      'His Heart Rate is 78 bpm \n' +
+      'Click here to call him or here to call 911';
+
+
+        var mailOptions = {
         from: 'fallxalert@gmail.com',
         to: 'bq13nju@outlook.com',
         subject: 'Alert: Your Family Member has fallen',
-        text: bod
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
+        text: textMessage
+        };
+
+        transporter.sendMail(mailOptions, function(error, info){
         if (error) {
-          console.log(error);
+        console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+        console.log('Email sent: ' + info.response);
         }
-      }); */
+      }); 
 
 
 
@@ -148,7 +157,7 @@ router.post('/', function(req, res, next) {
         //awesome
       }
     }); */
-    res.send('this is post realtime. sent. lat = ' + obj.gps.longitude);
+    res.send(textMessage);
 
  /*    // Create a database/collection inside CouchDB
     request.put(url + db, function(err, resp, body) {
