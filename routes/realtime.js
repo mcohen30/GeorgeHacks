@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
+const nodemailer = require('nodemailer');
+
 var request = require('request');
-var url = 'http://admin:password@127.0.0.1:5984/'
+//var url = 'http://admin:password@127.0.0.1:5984/'
 var db = 'realtime'
-var id = 'document_id'
-var nano = require('nano')('http://admin:password@127.0.0.1:5984/');
-var test_db = nano.db.use(db);
+//var id = 'document_id'
+//var nano = require('nano')('http://admin:password@127.0.0.1:5984/');
+//var test_db = nano.db.use(db);
 
 const http = require('http');
 
@@ -14,6 +16,32 @@ const http = require('http');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'fallxalert@gmail.com',
+          pass: 'aliali12345'
+        }
+      });
+      
+      //var bod= req.body;
+      var bod= "testeststestest";
+
+      var mailOptions = {
+        from: 'fallxalert@gmail.com',
+        to: 'bq13nju@outlook.com',
+        subject: 'Alert: Your Family Member has fallen',
+        text: bod
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+/* 
     http.get('http://127.0.0.1:5984/test2/_all_docs?include_docs=true', (resp) => {
           let data = '';
         
@@ -30,7 +58,7 @@ router.get('/', function(req, res, next) {
         
         }).on("error", (err) => {
           console.log("Error: " + err.message);
-        });
+        }); */
 
 });
 
@@ -57,11 +85,11 @@ router.post('/', function(req, res, next) {
         ;
     data = req.body;
     
-    test_db.insert(data, function(err, body){
+/*     test_db.insert(data, function(err, body){
       if(!err){
         //awesome
       }
-    });
+    }); */
     res.send('this is post realtime');
 
  /*    // Create a database/collection inside CouchDB
