@@ -3,7 +3,7 @@ var router = express.Router();
 
 var request = require('request');
 var url = 'http://admin:password@127.0.0.1:5984/'
-var db = 'realtime'
+var db = 'daily'
 var id = 'document_id'
 var nano = require('nano')('http://admin:password@127.0.0.1:5984/');
 var test_db = nano.db.use(db);
@@ -14,7 +14,7 @@ const http = require('http');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-    http.get('http://127.0.0.1:5984/test2/_all_docs?include_docs=true', (resp) => {
+    http.get('http://127.0.0.1:5984/' + db + '/_all_docs?include_docs=true', (resp) => {
           let data = '';
         
           // A chunk of data has been recieved.
@@ -40,29 +40,19 @@ router.post('/', function(req, res, next) {
 
     var data = {
         "id": "000001",
-        "type": "REAL_TIME",
+        "type": "DAILY",
         "date": "2018-03-24 EDT",
-        "time": "11:42:03",
-        "gps": {
-                "longitude": "-102.89477928",
-                "latitude": "34.34844343"
-            },
-        "acceleration": {
-                "x": "3.12",
-                "y": "0.1",
-                "z": "10"
-            },
-        "heart_rate": "78"
-        }
+        "steps": "3546"
+        }        
         ;
-    data = req.body;
+    //data = req.body;
     
     test_db.insert(data, function(err, body){
       if(!err){
         //awesome
       }
     });
-    res.send('this is post realtime');
+    res.send('this is post daily');
 
  /*    // Create a database/collection inside CouchDB
     request.put(url + db, function(err, resp, body) {
