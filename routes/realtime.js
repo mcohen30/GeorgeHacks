@@ -27,7 +27,28 @@ router.get('/', function(req, res, next) {
       //var bod= req.body;
       var bod= "testeststestest";
 
-      var mailOptions = {
+      var data = {
+        "id": "000001",
+        "type": "REAL_TIME",
+        "date": "2018-03-24 EDT",
+        "time": "11:42:03",
+        "gps": {
+                "longitude": "-102.89477928",
+                "latitude": "34.34844343"
+            },
+        "acceleration": {
+                "x": "3.12",
+                "y": "0.1",
+                "z": "10"
+            },
+        "heart_rate": "78"
+        } 
+        ;
+
+        
+        res.send('this is get realtime. sent tststststs' + 'long' + data.time);
+
+/*       var mailOptions = {
         from: 'fallxalert@gmail.com',
         to: 'bq13nju@outlook.com',
         subject: 'Alert: Your Family Member has fallen',
@@ -42,7 +63,7 @@ router.get('/', function(req, res, next) {
         }
 
         res.send('this is get realtime. sent tststststs');
-      });
+      }); */
 /* 
     http.get('http://127.0.0.1:5984/test2/_all_docs?include_docs=true', (resp) => {
           let data = '';
@@ -98,7 +119,13 @@ router.post('/', function(req, res, next) {
       //var bod= req.body;
       var bod= JSON.stringify(req.body);
 
-      var mailOptions = {
+      
+      console.log(req.gps.longitude); 
+
+
+      //send email
+
+/*       var mailOptions = {
         from: 'fallxalert@gmail.com',
         to: 'bq13nju@outlook.com',
         subject: 'Alert: Your Family Member has fallen',
@@ -111,13 +138,17 @@ router.post('/', function(req, res, next) {
         } else {
           console.log('Email sent: ' + info.response);
         }
-      });
+      }); */
+
+
+
+
 /*     test_db.insert(data, function(err, body){
       if(!err){
         //awesome
       }
     }); */
-    res.send('this is post realtime. sent' + bod);
+    res.send('this is post realtime. sent. lat = ' + obj.gps.longitude);
 
  /*    // Create a database/collection inside CouchDB
     request.put(url + db, function(err, resp, body) {
