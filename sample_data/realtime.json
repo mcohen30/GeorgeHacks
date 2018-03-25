@@ -1,0 +1,16 @@
+{
+"id": "000001"
+"type": "REAL_TIME"
+"date": "2018-03-24 EDT"
+"time": "11:42:02"
+"gps": {
+        "longitude": "-102.89477928"
+        "latitude": "34.34844343"
+    }
+"acceleration": {
+        "x": "3.12"
+        "y": "0.1"
+        "z": "10"
+    }
+"heart_rate": "78"
+}
